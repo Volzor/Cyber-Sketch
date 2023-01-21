@@ -3,8 +3,6 @@ const container = document.getElementById('container');
 const clearBtn = document.getElementById('clearBtn');
 const rainbowBtn = document.getElementById('rainbowBtn');
 const blackBtn = document.getElementById('blackBtn');
-const colorArray = ['red', 'orange', 'yellow', 'green', 'blue', 'pink', 'purple'];
-
 
 
 // creates re-sizeable grid
@@ -40,18 +38,19 @@ const clearGrid = () => {
 };
 clearGrid();
 
-// grabs random color from array
-const randomColor = () => {
-    return Math.floor(Math.random() * colorArray.length)
-};
-
 
 // Produces a rainbow effect on mouseover using the randomColor function
 const rainbowGrid = () => {
     const allCells = document.querySelectorAll('.grid-cells');
     allCells.forEach(cell => cell.addEventListener('mouseover', () => {
-        cell.style.backgroundColor = colorArray[randomColor()];
+        cell.style.backgroundColor = `rgb(${randomColor()},${randomColor()},${randomColor()})`;
     }));
+};
+
+// random color generator
+const randomColor = () => {
+    let randomValue = Math.floor(Math.random() * 255);
+    return randomValue;
 };
 
 // attaches event listener to 'rainbow' button
