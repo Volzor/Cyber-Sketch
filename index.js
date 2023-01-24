@@ -1,8 +1,20 @@
-// variables
+// variables from the HTML
 const container = document.getElementById('container');
 const clearBtn = document.getElementById('clearBtn');
 const rainbowBtn = document.getElementById('rainbowBtn');
 const blackBtn = document.getElementById('blackBtn');
+
+
+
+// allows user to input a size for the grid, max of 100 x 100
+const userInput = () => {
+    const promptUser = prompt('Type in a grid size 4-100');
+    if (promptUser > 100 || promptUser < 4) {
+        return prompt('Please type in a number between 4 and 100');
+    } else {
+        return promptUser;
+    };
+};
 
 
 // creates re-sizeable grid
@@ -20,16 +32,19 @@ const createGrid = (size) => {
     };
 
 };
-createGrid(32);
+createGrid(userInput());
+
+
 
 // changes grid cell colors using mouseover effect
 const changeColor = () => {
     const allCells = document.querySelectorAll('.grid-cells');
     allCells.forEach(cell => cell.addEventListener('mouseover', () => {
         cell.style.backgroundColor = 'black';
-    }))
+    }));
 };
 changeColor();
+
 
 // clears the grid
 const clearGrid = () => {
@@ -47,11 +62,13 @@ const rainbowGrid = () => {
     }));
 };
 
+
 // random color generator
 const randomColor = () => {
     let randomValue = Math.floor(Math.random() * 255);
     return randomValue;
 };
+
 
 // attaches event listener to 'rainbow' button
 rainbowBtn.addEventListener('click', rainbowGrid);
